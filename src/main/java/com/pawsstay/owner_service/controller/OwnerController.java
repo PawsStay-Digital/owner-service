@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -26,7 +25,7 @@ public class OwnerController {
     }
     @GetMapping("/email/{email}")
     public ResponseEntity<OwnerResponse> findOwner(@PathVariable String email){
-        if(!StringUtils.hasText(email)){
+        if(email == null || email.isBlank()){
             log.warn("email blank");
             return ResponseEntity.badRequest().build();
         }
