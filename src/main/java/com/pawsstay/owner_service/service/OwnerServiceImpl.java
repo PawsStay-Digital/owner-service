@@ -49,6 +49,13 @@ public class OwnerServiceImpl implements OwnerService{
         Owner ownerUpdate = ownerRepository.save(owner);
         return convertToRes(ownerUpdate);
     }
+
+    @Override
+    public Optional<OwnerResponse> findById(long id) {
+        Optional<Owner> ownerOptional = ownerRepository.findById(id);
+        return ownerOptional.map(this::convertToRes);
+    }
+
     private OwnerResponse convertToRes(Owner owner) {
         return OwnerResponse.builder().id(owner.getId())
                 .name(owner.getName())

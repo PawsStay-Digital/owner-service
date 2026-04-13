@@ -44,4 +44,9 @@ public class OwnerController {
         OwnerResponse updatedOwner = ownerService.updateOwner(id, req);
         return ResponseEntity.ok(updatedOwner);
     }
+    @GetMapping("/me")
+    public ResponseEntity<OwnerResponse> getMyProfile(@RequestHeader("X-Owner-Id") Long ownerId) {
+        Optional<OwnerResponse> ownerByEmail = ownerService.findById(ownerId);
+        return ownerByEmail.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }

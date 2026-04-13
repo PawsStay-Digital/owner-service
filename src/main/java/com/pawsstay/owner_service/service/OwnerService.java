@@ -10,4 +10,5 @@ public interface OwnerService {
     OwnerResponse createOwner(OwnerCreateRequest req);
     Optional<OwnerResponse> getOwnerByEmail(String email);
     OwnerResponse updateOwner(Long id, OwnerUpdateRequest req);
+    Optional<OwnerResponse> findById(long id);
 }
